@@ -16,7 +16,7 @@ typedef vector<vector<unsigned>> VVU ;
 
 bool estPremier(const unsigned & nbrDivise, const unsigned & maximum) {
     for (unsigned i = 2; i < sqrt(maximum); ++i) {
-        //En partant de 2 car 2 est premier et jusqu à sqrt(maximu)
+        //En partant de 2 car 2 est premier et jusqu à sqrt(maximum)
         if (nbrDivise%i == 0) {
             //Si i divise nbrDivise
             if (i != nbrDivise) {
