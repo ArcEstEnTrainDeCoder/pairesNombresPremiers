@@ -8,26 +8,27 @@ using namespace std;
 
 typedef vector<vector<unsigned>> VVU ;
 
+
 /* Consigne
  * Quelque soit un entier n pair, n est la somme de deux nombres premiers n1 et n2 (conjecture de Goldbach)
  * Quelque que soit n, afficher (stocker) toutes les pairs de (n1, n2)
 */
 
 
-bool estPremier(const unsigned & nbrDivise, const unsigned & maximum) {
-    for (unsigned i = 2; i < sqrt(maximum); ++i) {
+bool estPremier(const unsigned & nbr, const unsigned & maximum) {
+    for (unsigned i = 2; i < sqrt(maximum); i += 1) {
         //En partant de 2 car 2 est premier et jusqu à sqrt(maximum)
-        if (nbrDivise%i == 0) {
-            //Si i divise nbrDivise
-            if (i != nbrDivise) {
-                //Et que i et nbrDivise ne sont pas les memes chiffres/nombres
+        if (nbr%i == 0) {
+            //Si i divise nbr
+            if (i != nbr) {
+                //Et que i et nbr ne sont pas les memes chiffres/nombres
                 return false;
-                //Alors nbrDivise n est pas premier
+                //Alors nbr est pas premier
             }
         }
     }
     return true;
-    //nbrDivise est premier
+    //nbr est premier
 }
 
 
