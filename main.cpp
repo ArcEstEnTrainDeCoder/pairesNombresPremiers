@@ -47,6 +47,7 @@ VU cribleEra(const unsigned & n) {
     VB vecBool(n, true);
     VU vecTest;
     for (unsigned i = 3; i < sqrt(n); i += 2) {
+        //On démarre de 3 et incrémente de deux pour aller chercher le plus petit impair, 2 est le seul nombre premier pair il sera donc traité à part 
         if (vecBool[i]) {
             for (unsigned j = i; j < sqrt(n); j += i) {
                 //j devient un multiple de i car incrémenté de i
