@@ -49,7 +49,7 @@ VU cribleEra(const unsigned & n) {
     VU vecTest;
     for (unsigned i = 3; i < sqrt(n); i += 2) {
         if (vecBool[i]) {
-            for (unsigned j = i * i; j < n; j += i) {
+            for (unsigned j = i; j < sqrt(n); j += i) {
                 //j devient un multiple de i
                 vecBool[j] = false;
             }
