@@ -48,7 +48,6 @@ VU cribleEra(const unsigned & n) {
     VB vecBool(n, true);
     VU vecTest;
     for (unsigned i = 3; i < sqrt(n); i += 2) {
-        //i partant de 3 et incrémenté de 2 pour aller au plus petit nombre impair
         if (vecBool[i]) {
             for (unsigned j = i * i; j < n; j += i) {
                 //j devient un multiple de i
@@ -57,7 +56,7 @@ VU cribleEra(const unsigned & n) {
         }
     }
     for (unsigned i = 3; i < n/2 + 1; i += 2) {
-        //Jusqu'à n/2 + 1 pour éviter les doublons
+        //Jusqu'à n/2 + 1 pour éviter les doublons et de
         if (vecBool[i]) {
             vecTest.push_back(i);
         }
@@ -69,10 +68,6 @@ VU cribleEra(const unsigned & n) {
 
 VVU goldbachV2(const unsigned & n, VU & vecNP) {
     assert(n%2 == 0);
-    if (n == 4) {
-        //Seul cas où 2 forme une pair pour un n pair
-        return {2, 2};
-    }
     VVU vvuPaireNP;
     for (const unsigned & n1 : vecNP) {
         unsigned n2 = n - n1;
@@ -86,10 +81,11 @@ VVU goldbachV2(const unsigned & n, VU & vecNP) {
 
 /*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
 
-bool verification(const VVU & vecTest, const unsigned & n) {
-    for (unsigned i = 0; i < vecTest.size(); ++i) {
-        for (unsigned j = 0; j < vecTest[i].size(); ++j) {
-            if (!estPremier(vecTest[i][j], n)) {
+template <typename T>
+bool verification(const vector<T> & vecTest, const unsigned & n) {
+    for (const auto & i : vecTest) {
+        for (const auto & j : i) {
+            if (!estPremier(j, n)) {
                 return false;
             }
         }
@@ -104,5 +100,6 @@ int main() {
     VU vecT = cribleEra(n);
     VVU  vvuTest = goldbachV2(n, vecT);
     afficherVV(vvuTest);
+    //cout << "VVU nombre premiers : " << boolalpha << verification(vvuTest, n) << endl;
     return 0;
 }
