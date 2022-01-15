@@ -2,18 +2,20 @@
 #include <vector>
 #include <assert.h>
 #include <math.h>
+#include <chrono>
 
 
 using namespace std;
 
-typedef vector<vector<unsigned>> VVU ;
+typedef vector<bool> VB ;
+typedef vector<unsigned> VU;
+typedef vector<VU> VVU ;
 
 
 /* Consigne
  * Quelque soit un entier n pair, n est la somme de deux nombres premiers n1 et n2 (conjecture de Goldbach)
  * Quelque que soit n, afficher (stocker) toutes les pairs de (n1, n2)
 */
-
 
 bool estPremier(const unsigned & nbr, const unsigned & maximum) {
     for (unsigned i = 2; i < sqrt(maximum); i += 1) {
@@ -42,31 +44,37 @@ void afficherVV(const vector<T> & vec) {
     }
 }
 
-
-VVU Goldbach(const unsigned & n) {
-    assert(n%2 == 0);   //On vérifie d'abord si n est pair
-    VVU vvuPairesDeNombres;
-    //On teste pour n = 4 ici car, notre boucle va faire un saut de 2 en partant de trois pour aller chercher le plus petit impair à chaque fois
-    //Et le seul cas où 2 est nécessaire c'est si n = 4 car 4 = 2 + 2
-    if (n == 4) {
-        vvuPairesDeNombres.push_back({2, 2});
-        return vvuPairesDeNombres;
-    }
-    for (unsigned n1 = 3; n1 < n/2 + 1; n1 += 2) {
-        //On fait n1 < n/2 +1 car on vaut éviter les répétitions
-        if(estPremier(n1, n)) {
-            //Si n1 est un nombre premier
-            unsigned n2 = n - n1;
-            if (estPremier(n2, n)) {
-                //Si n2 est un nombre premier
-                vvuPairesDeNombres.push_back({n2, n1});
-            }
+VU cribleEra(const unsigned & n) {
+    VB table(n, true);
+    VU vecTest;
+    for (unsigned i = 2; i < sqrt(n); i += 1) {
+        if (table[i] == true) {
+            for (unsigned j = i * i; j < n; j += i)
+                table[j] = false;
         }
     }
-    return vvuPairesDeNombres;
+    for (unsigned i = 2; i < n/2 + 1; i += 1) {
+        //Jusqu'à n/2 + 1 pour éviter les doublons
+        if (table[i]) {
+            vecTest.push_back(i);
+        }
+    }
+    return vecTest;
 }
 
 
+
+VVU goldbachV2(const unsigned & n, VU & vecNP) {
+    assert(n%2 == 0);
+    VVU vvuPaireNP;
+    for (const unsigned & n1 : vecNP) {
+        unsigned n2 = n - n1;
+        if (estPremier(n2, n)) {
+            vvuPaireNP.push_back({n2, n1});
+        }
+    }
+    return vvuPaireNP;
+}
 
 
 /*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
@@ -83,11 +91,11 @@ bool verification(const VVU & vecTest, const unsigned & n) {
 }
 */
 
+
 int main() {
-    VVU vvuTest;
     unsigned n = 1000000;
-    vvuTest = Goldbach(n);
+    VU vecT = cribleEra(n);
+    VVU  vvuTest = goldbachV2(n, vecT);
     afficherVV(vvuTest);
-    //cout << "VVU que nombres premiers : " << boolalpha << verification(vvuTest, n) << endl;
     return 0;
 }
