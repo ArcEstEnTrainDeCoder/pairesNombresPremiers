@@ -69,6 +69,10 @@ VU cribleEra(const unsigned & n) {
 VVU goldbachV2(const unsigned & n, VU & vecNP) {
     assert(n%2 == 0);
     VVU vvuPaireNP;
+    if (n == 4) {
+        //Seul cas où 2 forme une paire pour un entier pair
+        return {2, 2};
+    }
     for (const unsigned & n1 : vecNP) {
         unsigned n2 = n - n1;
         if (estPremier(n2, n)) {
