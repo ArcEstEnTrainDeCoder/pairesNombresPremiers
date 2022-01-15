@@ -45,17 +45,17 @@ void afficherVV(const vector<T> & vec) {
 }
 
 VU cribleEra(const unsigned & n) {
-    VB table(n, true);
+    VB vecBool(n, true);
     VU vecTest;
     for (unsigned i = 2; i < sqrt(n); i += 1) {
-        if (table[i] == true) {
+        if (vecBool[i] == true) {
             for (unsigned j = i * i; j < n; j += i)
-                table[j] = false;
+                vecBool[j] = false;
         }
     }
     for (unsigned i = 2; i < n/2 + 1; i += 1) {
         //Jusqu'à n/2 + 1 pour éviter les doublons
-        if (table[i]) {
+        if (vecBool[i]) {
             vecTest.push_back(i);
         }
     }
