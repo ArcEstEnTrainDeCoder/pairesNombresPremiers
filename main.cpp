@@ -20,7 +20,7 @@ typedef vector<VU> VVU ;
 
 bool estPremier(const unsigned & nbr, const unsigned & maximum) {
     for (unsigned i = 2; i*i < maximum; i += 1) {
-        //En partant de 2 car 2 est premier et jusqu à sqrt(maximum)
+        //En partant de 2 car 2 est premier et jusqu à maximum 
         if (nbr%i == 0) {
             //Si i divise nbr
             if (i != nbr) {
@@ -108,6 +108,7 @@ int main() {
      * n = 100 000 000, temps = 16 secondes
     */
     unsigned n = 1000000;
+    //J'ai mis auto parce que j'avais aucune idée de quoi mettre
     auto debut = chrono::system_clock::now();
     VU vecT = cribleEra(n);
     VVU  vvuTest = goldbachV2(n, vecT);
