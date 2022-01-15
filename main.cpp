@@ -44,6 +44,7 @@ void afficherVV(const vector<T> & vec) {
 }
 
 VU cribleEra(const unsigned & n) {
+    asser(n%2 == 0);
     VB vecBool(n, true);
     VU vecTest;
     for (unsigned i = 3; i < sqrt(n); i += 2) {
@@ -67,7 +68,6 @@ VU cribleEra(const unsigned & n) {
 
 
 VVU goldbachV2(const unsigned & n, VU & vecNP) {
-    assert(n%2 == 0);
     VVU vvuPaireNP;
     if (n == 4) {
         //Seul cas où 2 forme une paire pour un entier pair
