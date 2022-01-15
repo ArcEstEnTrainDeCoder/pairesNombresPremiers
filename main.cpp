@@ -53,7 +53,7 @@ VU cribleEra(const unsigned & n) {
                 vecBool[j] = false;
         }
     }
-    for (unsigned i = 2; i < n/2 + 1; i += 1) {
+    for (unsigned i = 3; i < n/2 + 1; i += 2) {
         //Jusqu'à n/2 + 1 pour éviter les doublons
         if (vecBool[i]) {
             vecTest.push_back(i);
