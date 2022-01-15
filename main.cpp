@@ -50,13 +50,13 @@ VU cribleEra(const unsigned & n) {
     for (unsigned i = 3; i < sqrt(n); i += 2) {
         if (vecBool[i]) {
             for (unsigned j = i; j < sqrt(n); j += i) {
-                //j devient un multiple de i
+                //j devient un multiple de i car incrémenté de i
                 vecBool[j] = false;
             }
         }
     }
     for (unsigned i = 3; i < n/2 + 1; i += 2) {
-        //Jusqu'à n/2 + 1 pour éviter les doublons et de
+        //Jusqu'à n/2 + 1 pour éviter les doublons
         if (vecBool[i]) {
             vecTest.push_back(i);
         }
