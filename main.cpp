@@ -49,16 +49,16 @@ VU cribleEra(const unsigned & n) {
     assert(n%2 == 0);
     VB vecBool(n, true);
     VU vecTest;
-    for (unsigned i = 3; i*i < n; i += 2) {
+    for (size_t i = 3; i*i < n; i += 2) {
         //On démarre de 3 et incrémente de deux pour aller chercher le plus petit impair, 2 est le seul nombre premier pair il sera donc traité à part
         if (vecBool[i]) {
-            for (unsigned j = i*i; j < n; j += i) {
+            for (size_t j = i*i; j < n; j += i) {
                 //j devient un multiple de i car incrémenté de i
                 vecBool[j] = false;
             }
         }
     }
-    for (unsigned i = 3; i < n/2 + 1; i += 2) {
+    for (size_t i = 3; i < n/2 + 1; i += 2) {
         //Jusqu'à n/2 + 1 pour éviter les doublons
         if (vecBool[i]) {
             vecTest.push_back(i);
