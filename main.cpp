@@ -47,9 +47,11 @@ void afficherVV(const vector<T> & vec) {
 VU cribleEra(const unsigned & n) {
     VB vecBool(n, true);
     VU vecTest;
-    for (unsigned i = 2; i < sqrt(n); i += 1) {
+    for (unsigned i = 3; i < sqrt(n); i += 2) {
+        //i partant de 3 et incrémenté de 2 pour aller au plus petit nombre impair
         if (vecBool[i]) {
             for (unsigned j = i * i; j < n; j += i) {
+                //j devient un multiple de i
                 vecBool[j] = false;
             }
         }
@@ -67,6 +69,10 @@ VU cribleEra(const unsigned & n) {
 
 VVU goldbachV2(const unsigned & n, VU & vecNP) {
     assert(n%2 == 0);
+    if (n == 4) {
+        //Seul cas où 2 forme une pair pour un n pair
+        return {2, 2};
+    }
     VVU vvuPaireNP;
     for (const unsigned & n1 : vecNP) {
         unsigned n2 = n - n1;
