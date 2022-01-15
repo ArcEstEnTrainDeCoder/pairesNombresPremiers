@@ -48,7 +48,7 @@ VU cribleEra(const unsigned & n) {
     VB vecBool(n, true);
     VU vecTest;
     for (unsigned i = 2; i < sqrt(n); i += 1) {
-        if (vecBool[i] == true) {
+        if (vecBool[i]) {
             for (unsigned j = i * i; j < n; j += i)
                 vecBool[j] = false;
         }
