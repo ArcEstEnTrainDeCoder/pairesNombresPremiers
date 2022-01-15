@@ -96,7 +96,7 @@ bool verification(const vector<T> & vecTest, const unsigned & n) {
 
 
 int main() {
-    unsigned n = 1000000;
+    unsigned n = 10000000;
     VU vecT = cribleEra(n);
     VVU  vvuTest = goldbachV2(n, vecT);
     afficherVV(vvuTest);
