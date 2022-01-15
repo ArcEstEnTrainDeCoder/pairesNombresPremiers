@@ -85,7 +85,7 @@ VVU goldbachV2(const unsigned & n, VU & vecNP) {
 }
 
 
-//Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
+/*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
 
 template <typename T>
 bool verification(const vector<T> & vecTest, const unsigned & n) {
@@ -98,7 +98,7 @@ bool verification(const vector<T> & vecTest, const unsigned & n) {
     }
     return true;
 }
-
+*/
 
 
 int main() {
