@@ -2,6 +2,7 @@
 #include <vector>
 #include <assert.h>
 #include <math.h>
+#include <chrono>
 
 
 using namespace std;
@@ -48,8 +49,9 @@ VU cribleEra(const unsigned & n) {
     VU vecTest;
     for (unsigned i = 2; i < sqrt(n); i += 1) {
         if (vecBool[i]) {
-            for (unsigned j = i * i; j < n; j += i)
+            for (unsigned j = i * i; j < n; j += i) {
                 vecBool[j] = false;
+            }
         }
     }
     for (unsigned i = 3; i < n/2 + 1; i += 2) {
