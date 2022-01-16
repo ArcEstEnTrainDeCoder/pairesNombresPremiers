@@ -9,6 +9,7 @@ using namespace std;
 
 typedef vector<bool> VB ;
 typedef vector<unsigned> VU;
+typedef VU::iterator VUI ;
 typedef vector<VU> VVU ;
 
 
@@ -20,7 +21,7 @@ typedef vector<VU> VVU ;
 
 bool estPremier(const unsigned & nbr, const unsigned & maximum) {
     for (unsigned i = 2; i*i < maximum; i += 1) {
-        //En partant de 2 car 2 est premier et jusqu à maximum 
+        //En partant de 2 car 2 est premier et jusqu à sqrt(maximum)
         if (nbr%i == 0) {
             //Si i divise nbr
             if (i != nbr) {
@@ -45,22 +46,19 @@ void afficherVV(const vector<T> & vec) {
     }
 }
 
-VU cribleEra(const unsigned & n) {
+VU cribleEraV2(const unsigned & n) {
     assert(n%2 == 0);
-    VB vecBool(n, true);
+    VU vecBool(n, 1);
     VU vecTest;
     for (unsigned i = 3; i*i < n; i += 2) {
-        //On démarre de 3 et incrémente de deux pour aller chercher le plus petit impair, 2 est le seul nombre premier pair il sera donc traité à part
-        if (vecBool[i]) {
-            for (unsigned j = i*i; j < n; j += i) {
-                //j devient un multiple de i car incrémenté de i
-                vecBool[j] = false;
+        if (vecBool[i] == 1) {
+            for (unsigned j = i*i; j < n ; j += i) {
+                vecBool[j] = 0;
             }
         }
     }
     for (unsigned i = 3; i < n/2 + 1; i += 2) {
-        //Jusqu'à n/2 + 1 pour éviter les doublons
-        if (vecBool[i]) {
+        if (vecBool[i] == 1) {
             vecTest.push_back(i);
         }
     }
@@ -85,7 +83,7 @@ VVU goldbachV2(const unsigned & n, VU & vecNP) {
 }
 
 
-/*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
+//Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
 
 template <typename T>
 bool verification(const vector<T> & vecTest, const unsigned & n) {
@@ -98,19 +96,18 @@ bool verification(const vector<T> & vecTest, const unsigned & n) {
     }
     return true;
 }
-*/
+
 
 
 int main() {
     /*
-     * n = 1 000 000, temps = 0.061 secondes
-     * n = 10 000 000, temps = 0.9 secondes
-     * n = 100 000 000, temps = 16 secondes
+     * n = 1 000 000, temps = 0.037 secondes
+     * n = 10 000 000, temps = 0.7 secondes
+     * n = 100 000 000, temps = 14 secondes
     */
-    unsigned n = 1000000;
-    //J'ai mis auto parce que j'avais aucune idée de quoi mettre
+    unsigned n = 100000000;
     auto debut = chrono::system_clock::now();
-    VU vecT = cribleEra(n);
+    VU vecT = cribleEraV2(n);
     VVU  vvuTest = goldbachV2(n, vecT);
     auto fin = chrono::system_clock::now();
     afficherVV(vvuTest);
