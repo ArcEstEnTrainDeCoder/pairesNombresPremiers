@@ -48,17 +48,17 @@ void afficherVV(const vector<T> & vec) {
 
 VU cribleEraV2(const unsigned & n) {
     assert(n%2 == 0);
-    VU vecBool(n, 1);
+    VU vecQueDesUn(n, 1);
     VU vecTest;
     for (unsigned i = 3; i*i < n; i += 2) {
-        if (vecBool[i] == 1) {
+        if (vecQueDesUn[i] == 1) {
             for (unsigned j = i*i; j < n ; j += i) {
-                vecBool[j] = 0;
+                vecQueDesUn[j] = 0;
             }
         }
     }
     for (unsigned i = 3; i < n/2 + 1; i += 2) {
-        if (vecBool[i] == 1) {
+        if (vecQueDesUn[i] == 1) {
             vecTest.push_back(i);
         }
     }
