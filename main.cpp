@@ -7,9 +7,7 @@
 
 using namespace std;
 
-typedef vector<bool> VB ;
 typedef vector<unsigned> VU;
-typedef VU::iterator VUI ;
 typedef vector<VU> VVU ;
 
 
