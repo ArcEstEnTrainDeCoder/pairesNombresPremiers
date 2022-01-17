@@ -35,7 +35,7 @@ void afficherVV(const vector<T> & vec) {
     }
 }
 
-VU cribleEraV2(const unsigned & n, VU & vecTest) {
+VU cribleEraV3(const unsigned & n, VU & vecTest) {
     assert(n%2 == 0);
     VU vecQueDesUn(n, 1);
     //On crée un vecteur avec uniquement des 1
@@ -58,7 +58,7 @@ VU cribleEraV2(const unsigned & n, VU & vecTest) {
 
 
 
-VVU goldbachV2(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
+VVU goldbachV3(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
     //Algo qui va donner les pairs en gros
     VVU vvuPaireNP;
     if (n == 4) {
@@ -102,8 +102,8 @@ int main() {
     unsigned n = 1000000000;
     auto debut = chrono::system_clock::now();
     VU vecTest;
-    VU vecT = cribleEraV2(n, vecTest);
-    VVU  vvuTest = goldbachV2(n, vecT, vecTest);
+    VU vecT = cribleEraV3(n, vecTest);
+    VVU  vvuTest = goldbachV3(n, vecT, vecTest);
     auto fin = chrono::system_clock::now();
     //afficherVV(vvuTest);
     cout << "Temps : " << chrono::duration_cast<chrono::milliseconds>(fin - debut).count() << " millisecondes" << endl;
