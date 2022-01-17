@@ -8,6 +8,7 @@
 using namespace std;
 
 typedef vector<unsigned> VU;
+typedef VU::iterator VUI;
 typedef vector<VU> VVU ;
 
 
@@ -17,20 +18,10 @@ typedef vector<VU> VVU ;
 */
 
 
-bool estPremier(const unsigned & nbr, const unsigned & maximum) {
-    for (unsigned i = 2; i*i < maximum; i += 1) {
-        //En partant de 2 car 2 est premier et jusqu à sqrt(maximum)
-        if (nbr%i == 0) {
-            //Si i divise nbr
-            if (i != nbr) {
-                //Et que i et nbr ne sont pas les memes chiffres/nombres
-                return false;
-                //Alors nbr est pas premier
-            }
-        }
-    }
-    return true;
-    //nbr est premier
+
+bool estPremierV2(const unsigned & n2, const VU & vec) {
+    //Si l'élément à l'indice n2 est autre que 0, alors n2 est premier
+    return (vec[n2] != 0);
 }
 
 
@@ -44,13 +35,15 @@ void afficherVV(const vector<T> & vec) {
     }
 }
 
-VU cribleEraV2(const unsigned & n) {
+VU cribleEraV2(const unsigned & n, VU & vecTest) {
     assert(n%2 == 0);
     VU vecQueDesUn(n, 1);
-    VU vecTest;
+    //On crée un vecteur avec uniquement des 1
     for (unsigned i = 3; i*i < n; i += 2) {
         if (vecQueDesUn[i] == 1) {
+            //Si il y a 1
             for (unsigned j = i*i; j < n ; j += i) {
+                //j devient un multiple de i
                 vecQueDesUn[j] = 0;
             }
         }
@@ -60,20 +53,23 @@ VU cribleEraV2(const unsigned & n) {
             vecTest.push_back(i);
         }
     }
-    return vecTest;
+    return vecQueDesUn;
 }
 
 
 
-VVU goldbachV2(const unsigned & n, VU & vecNP) {
+VVU goldbachV2(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
+    //Algo qui va donner les pairs en gros
     VVU vvuPaireNP;
     if (n == 4) {
         //Seul cas où 2 forme une paire pour un entier pair
         return {{2, 2}};
     }
-    for (const unsigned & n1 : vecNP) {
+    for (const unsigned & n1 : vecNombreBien){
+        //On parcourt le vecteur avec un itérateur à la position 3 (car il y a 3) et on incrémente de deux pour chercher le plus petit impair
         unsigned n2 = n - n1;
-        if (estPremier(n2, n)) {
+        if (estPremierV2(n2, vecNP)) {
+            //Si n2 est premier
             vvuPaireNP.push_back({n2, n1});
         }
     }
@@ -81,7 +77,7 @@ VVU goldbachV2(const unsigned & n, VU & vecNP) {
 }
 
 
-//Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
+/*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
 
 template <typename T>
 bool verification(const vector<T> & vecTest, const unsigned & n) {
@@ -94,21 +90,22 @@ bool verification(const vector<T> & vecTest, const unsigned & n) {
     }
     return true;
 }
-
+*/
 
 
 int main() {
     /*
-     * n = 1 000 000, temps = 0.037 secondes
-     * n = 10 000 000, temps = 0.7 secondes
-     * n = 100 000 000, temps = 14 secondes
+     * n = 1 000 000, temps = 0.019 secondes
+     * n = 10 000 000, temps = 0.278 secondes
+     * n = 100 000 000, temps = 2,4 secondes
     */
-    unsigned n = 100000000;
+    unsigned n = 1000000000;
     auto debut = chrono::system_clock::now();
-    VU vecT = cribleEraV2(n);
-    VVU  vvuTest = goldbachV2(n, vecT);
+    VU vecTest;
+    VU vecT = cribleEraV2(n, vecTest);
+    VVU  vvuTest = goldbachV2(n, vecT, vecTest);
     auto fin = chrono::system_clock::now();
-    afficherVV(vvuTest);
+    //afficherVV(vvuTest);
     cout << "Temps : " << chrono::duration_cast<chrono::milliseconds>(fin - debut).count() << " millisecondes" << endl;
     //cout << "VVU nombre premiers : " << boolalpha << verification(vvuTest, n) << endl;
     return 0;
