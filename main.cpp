@@ -1,14 +1,12 @@
 #include <iostream>
 #include <vector>
 #include <assert.h>
-#include <math.h>
 #include <chrono>
 
 
 using namespace std;
 
 typedef vector<unsigned> VU;
-typedef VU::iterator VUI;
 typedef vector<VU> VVU ;
 
 
@@ -35,7 +33,7 @@ void afficherVV(const vector<T> & vec) {
     }
 }
 
-VU cribleEraV3(const unsigned & n, VU & vecTest) {
+VU cribleEraV2(const unsigned & n, VU & vecTest) {
     assert(n%2 == 0);
     VU vecQueDesUn(n, 1);
     //On crée un vecteur avec uniquement des 1
@@ -58,7 +56,7 @@ VU cribleEraV3(const unsigned & n, VU & vecTest) {
 
 
 
-VVU goldbachV3(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
+vector<vector<unsigned>> goldbachV2(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
     //Algo qui va donner les pairs en gros
     VVU vvuPaireNP;
     if (n == 4) {
@@ -76,37 +74,21 @@ VVU goldbachV3(const unsigned & n, VU & vecNP, const VU & vecNombreBien) {
     return vvuPaireNP;
 }
 
-
-/*Fonction permettant de vérifier si tous les éléments d'un VVU sont premiers
-
-template <typename T>
-bool verification(const vector<T> & vecTest, const unsigned & n) {
-    for (const auto & i : vecTest) {
-        for (const auto & j : i) {
-            if (!estPremier(j, n)) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-*/
-
-
 int main() {
     /*
-     * n = 1 000 000, temps = 0.019 secondes
-     * n = 10 000 000, temps = 0.278 secondes
+     * n = 1 000 000, temps = 0.01 secondes
+     * n = 10 000 000, temps = 0.253 secondes
      * n = 100 000 000, temps = 2,4 secondes
     */
-    unsigned n = 1000000000;
+    unsigned cmpt = 0;
+    unsigned n = 1000000;
     auto debut = chrono::system_clock::now();
     VU vecTest;
-    VU vecT = cribleEraV3(n, vecTest);
-    VVU  vvuTest = goldbachV3(n, vecT, vecTest);
+    VU vecT = cribleEraV2(n, vecTest);
+    VVU  vvuTest = goldbachV2(n, vecT, vecTest);
     auto fin = chrono::system_clock::now();
     //afficherVV(vvuTest);
     cout << "Temps : " << chrono::duration_cast<chrono::milliseconds>(fin - debut).count() << " millisecondes" << endl;
-    //cout << "VVU nombre premiers : " << boolalpha << verification(vvuTest, n) << endl;
     return 0;
 }
+
