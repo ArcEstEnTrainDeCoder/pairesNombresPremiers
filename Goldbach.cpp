@@ -24,7 +24,7 @@ void afficherVV(const VVU & vec) {
         cout << endl;
     }
 }
-
+*/
 
 int main() {
     /*
