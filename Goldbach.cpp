@@ -15,6 +15,17 @@ typedef vector<VU> VVU ;
  * Quelque que soit n, afficher (stocker) toutes les pairs de (n1, n2)
 */
 
+/*
+void afficherVV(const VVU & vec) {
+    for (auto & i : vec) {
+        for (auto & j : i) {
+            cout << j << ' ';
+        }
+        cout << endl;
+    }
+}
+
+
 int main() {
     /*
      * n = 1 000 000, temps = 0.008 secondes
@@ -34,6 +45,8 @@ int main() {
         //afficherVV(vvuPaireNP);
         return 0;
     }
+    
+    /* Début criblage */ 
     for (unsigned i = 3; i*i < n; i += 2) {
         //On démarre à 3 car 2 a été traité juste avant, on incrémente de deux pour venir chercher le plus petit impair car tout les autres nombres premiers sont impairs
         if (vecQueDesUn[i] == 1) {
@@ -53,6 +66,9 @@ int main() {
             vecTest.push_back(i);
         }
     }
+    
+    /* Fin criblage */ 
+    
     //On ressort donc avec nos deux vecteurs, un de nombres premiers et un second d'indice de nombre premier
 
     for (const unsigned & n1 : vecTest){
