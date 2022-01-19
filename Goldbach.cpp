@@ -3,10 +3,8 @@
 #include <assert.h>
 #include <chrono>
 
-
 using namespace std;
 
-typedef vector<string> VS;
 typedef vector<unsigned> VU;
 typedef vector<VU> VVU ;
 
