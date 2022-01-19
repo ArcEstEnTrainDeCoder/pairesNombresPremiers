@@ -33,7 +33,6 @@ int main() {
     if (n == 4) {
         //Seul cas où 2 forme une paire pour un entier pair
         vvuPaireNP.push_back({2,2});
-        //afficherVV(vvuPaireNP);
         return 0;
     }
     /*  Début criblage */
