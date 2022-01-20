@@ -17,11 +17,11 @@ typedef vector<VU> VVU ;
 int main() {
     /* Temps records :
      * n = 1 000 000, temps = 0.006 secondes
-     * n = 10 000 000, temps = 0.097 secondes
-     * n = 100 000 000, temps = 1,5 secondes
-     * n = 1 000 000 000, temps = 18,1 secondes
+     * n = 10 000 000, temps = 0.095 secondes
+     * n = 100 000 000, temps = 1,4 secondes
+     * n = 1 000 000 000, temps = 17,1 secondes
     */
-    const unsigned n = 1000000000;
+    const unsigned n = 1000000;
     string vecQueDesUn;
     vecQueDesUn.resize(n);
     //On crée une chaine de caractère de taille n 
