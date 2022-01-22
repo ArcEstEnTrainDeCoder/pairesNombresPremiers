@@ -22,6 +22,7 @@ int main() {
      * n = 1 000 000 000, temps = 17,1 secondes
     */
     const unsigned n = 1000000;
+    assert(n%2 == 0);
     string vecQueDesUn;
     vecQueDesUn.resize(n);
     //On crée une chaine de caractère de taille n 
@@ -40,14 +41,14 @@ int main() {
         if (vecQueDesUn[i] == vecQueDesUn[n+ 1]) {
             //Si il n'y a rien à l'indice i
             for (size_t j = i*i; j < n ; j += i) {
-                //j devient un multiple de i
+                //j devient un multiple de i car incrémenté de i, j ne peut être premier car il est divisible par lui-même, 1 et i
                 vecQueDesUn[j] = '1';
             }
         }
     }
     //On ressort donc avec une chaine de caractère avec des '1' à l'indice de nombres non premiers
 
-    //On va venir prendre ces indices pour les mettres dans un second vecteur qui a comme taille le nombre de nombres premiers de 3 à n/2 + 1
+    //On va venir prendre ces indices pour les mettres dans un second vecteur qui a comme taille le nombre de nombres premiers de 3 à n/2 + 1 pour éviter les répétitions
     for (size_t i = 3; i < n/2 + 1; i += 2) {
         if (vecQueDesUn[i] == vecQueDesUn[n+ 1]) {
             //Si l'indice est premier, on l'ajoute au vecteur
@@ -67,8 +68,9 @@ int main() {
         }
     }  
     auto fin = chrono::system_clock::now();
-    for (auto & i : vvuPaireNP) {
-        for (auto & j : i) {
+    //Affichage
+    for (const VU & i : vvuPaireNP) {
+        for (const unsigned & j : i) {
             cout << j << ' ';
         }
         cout << endl;
