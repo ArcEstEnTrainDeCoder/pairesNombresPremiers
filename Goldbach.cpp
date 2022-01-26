@@ -15,12 +15,6 @@ typedef vector<VU> VVU ;
 */
 
 int main() {
-    /* Temps records :
-     * n = 1 000 000, temps = 0.006 secondes
-     * n = 10 000 000, temps = 0.095 secondes
-     * n = 100 000 000, temps = 1,4 secondes
-     * n = 1 000 000 000, temps = 17,1 secondes
-    */
     const unsigned n = 1000000;
     assert(n%2 == 0);
     string vecQueDesUn;
