@@ -18,4 +18,8 @@ Ce document markdown a donc comme but d'expliquer les différentes étapes de l'
 * n = 1 000 000 000 :
   * __17,1__ secondes.
 
+## 1 - Trouver les nombres premiers
+
+
+
 _Working Progress ..._ ⛏️
