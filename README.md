@@ -58,6 +58,6 @@ for (unsigned i = 3; i*i < n: i += 2) { for (unsigned j = i*i; j < n; j += i) { 
 
 ## 2 - Stocker les nombres premiers
 
-Le vecteur dans lequel sont nos nombres premiers (et non premier également) à la fin du crible peut se faire sous plusieurs formes. La manière la plus intuisitve serait de faire un vecteur d'entiers naturels en le remplissant de ``` 0 ``` et mettre par exemple ``` 1 ``` aux indices non premiers. Cette méthode a quelques défauts. Tout d'abord, un entier naturel peut prendre entre 2 et 4 octets de mémoire. De plus, lorsque l'on crée un vecteur d'entier naturel de taille n, ce dernier se remplie forcément de 0
+Le vecteur dans lequel sont nos nombres premiers (et non premier également) à la fin du crible peut se faire sous plusieurs formes. La manière la plus intuisitve serait de faire un vecteur d'entiers naturels en le remplissant de ``` 0 ``` et mettre par exemple ``` 1 ``` aux indices non premiers. Cette méthode a quelques défauts. Tout d'abord, un entier naturel peut prendre entre 2 et 4 octets de mémoire. De plus, lorsque l'on crée un vecteur d'entier naturel de taille n, ce dernier se remplie forcément de 0. 
 
 _Working Progress ..._ ⛏️
