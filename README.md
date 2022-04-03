@@ -60,4 +60,8 @@ for (unsigned i = 3; i*i < n: i += 2) { for (unsigned j = i*i; j < n; j += i) { 
 
 Le vecteur dans lequel sont nos nombres premiers (et non premier également) à la fin du crible peut se faire sous plusieurs formes. La manière la plus intuisitve serait de faire un vecteur d'entiers naturels en le remplissant de ``` 0 ``` et mettre par exemple ``` 1 ``` aux indices non premiers. Cette méthode a quelques défauts. Tout d'abord, un entier naturel peut prendre entre 2 et 4 octets de mémoire. De plus, lorsque l'on crée un vecteur d'entier naturel de taille n, ce dernier se remplie forcément de 0. 
 
+On peut donc refaire le même procédés mais en remplaçant la liste d'entier par une chaine de caractère. Un charactère ne prend que 1 octet, ce qui est bien moins gourmand qu'un entier naturel. C'est donc un gain de mémoire et de temps. Il nous suffit donc de prendre la boucle plus haut est de remplacer un caractère qui n'est pas premier par un caractère quelconque (ici ``` 1 ```).
+
+Une fois notre chaine de caractère obtenu, il faut maintenant 
+
 _Working Progress ..._ ⛏️
