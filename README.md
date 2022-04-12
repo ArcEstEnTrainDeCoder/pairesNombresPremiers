@@ -40,20 +40,20 @@ Le crible d'Ératosthène est une méthode permettant de déterminer une liste d
 On réitère l'opération en prenant le prochain entier non coché dans la liste. À noter qu'avec ce crible, il est possible de parcourir notre liste jusqu'à sqrt(n). On obtient une boucle :
 
 ```c++
-for (unsigned i = 0; i < sqrt(n): i += 1) { for (unsigned j = i; j < sqrt(n); j += i) { ... } }
+for (size_t i = 0; i < sqrt(n): i += 1) { for (size_t j = i; j < sqrt(n); j += i) { ... } }
 ```
 
 On peut dans un premier temps penser à une petite optimisation. On sait que **presque** tous les nombres premiers sont impairs, tous sauf 2. On peut également déduire 
 qu'il n'y a une seule possibilité où 2 est nécessaire ( *n = 4, n1 = 2, n2 = 2* ). Il nous suffit donc de créer une solution à part dans notre programme pour n = 4. Ainsi, on peut uniquement parcourir l'ensemble des nombres impairs :
 
 ```c++
-for (unsigned i = 3; i < sqrt(n): i += 2) { for (unsigned j = i; j < sqrt(n); j += i) { ... } }
+for (size_t i = 3; i < sqrt(n): i += 2) { for (size_t j = i; j < sqrt(n); j += i) { ... } }
 ```
 
 On ajoute également une dernière optimisation concernant la boucle en elle-même, on applique la fonction carré de chaque côté de l'égalité ( *j'avoue avoir du mal à comprendre, mais mon programme va bien plus vite sans la racine carré* ). On obtient finalement :
 
 ```c++
-for (unsigned i = 3; i*i < n: i += 2) { for (unsigned j = i*i; j < n; j += i) { ... } }
+for (size_t i = 3; i*i < n: i += 2) { for (size_t j = i*i; j < n; j += i) { ... } }
 ```
 
 ## 2 - Stocker les nombres premiers
