@@ -62,6 +62,18 @@ Le vecteur dans lequel sont nos nombres premiers (et non premier également) à 
 
 On peut donc refaire le même procédés mais en remplaçant la liste d'entier par une chaine de caractère. Un charactère ne prend que 1 octet, ce qui est bien moins gourmand qu'un entier naturel. C'est donc un gain de mémoire et de temps. Il nous suffit donc de prendre la boucle plus haut est de remplacer un caractère qui n'est pas premier par un caractère quelconque (ici ``` 1 ```).
 
-Une fois notre chaine de caractère obtenu, il faut maintenant 
+Une fois notre chaine de caractère obtenu, il faut maintenant en ressortir tous les nombres premiers. Ces derniers correspondent aux indices dans notre chaine de caractères. Il nou faut donc parcourir notre chaine et en ressortir les indices premiers. Seul problème, il nous faut éviter les doublons. En effet, si on prend toutes la chaine de caractères, on va se retrouver avec le résultat suivant :
+
+```c++
+10 = 7 + 3
+10 = 3 + 7
+```
+
+Or, l'addition étant une opération 3 + 7 et 7 + 3 sont les mêmes, une seule nous suffit. Il va donc falloir prendre uniquement la moitié des indices de notre chaine de caractères (ça peut être difficile à comprendre pour l'instant, ça va surtout s'expliquer avec la prochaine étape).
+On parcourt donc la chaine avec une boucle du style :
+
+```c++
+for (size_t i = 3; i < n / 2 + 1; i += 2) { ... }
+```
 
 _Working Progress ..._ ⛏️
