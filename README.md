@@ -76,4 +76,45 @@ On parcourt donc la chaine avec une boucle du style :
 for (size_t i = 3; i < n / 2 + 1; i += 2) { ... }
 ```
 
+## 3 - Trouver toutes les paires
+
+Une méthode naïve pour trouver toutes les paires seraient de faire deux boucles imbriquées dans notre vecteur et de tester toutes les additions entre nos entiers pour savoir lesquels, une fois additionés, sont égaux à n :
+
+```c++
+for (size_t i = 0; i < vecteur.size(); i += 1) {
+    for (size_t j = 0; j < vecteur.size(); j += 1) {
+        if (vecteur[i] + vecteur[j] == n) {
+           ...
+        }
+    }
+}
+```
+
+On peut simplifier notre méthode en prenant directement la valeur dans le vecteur avec une boucle :
+
+```c++
+for (const unsigned & n1 : vecteur) { ... }
+```
+
+Ensuite, on donne n1 et n2, les deux entiers premiers dont l'addition est égale à n. On sait donc que n1 + n2 = n. 
+On connait déjà n, si l'on parcourt le vecteur une fois on peut également savoir n1. Donc on peut connaitre n2 en écrivant : n2 = n - n1. On peut l'écrire avec une boucle :
+
+```c++
+for (const unsigned & n1) {
+    unsigned n2 = n - n1;
+    ...
+}
+```
+
+Enfin, il nous faut savoir si n2 est un nombre premier, pour se faire nous allons reprendre notre précédent vecteur avec les indices de nombres premiers et nous allons vérifier si l'indice n2 de notre vecteur est vide (ce qui correspond à un nombre premier). On obtient :
+
+```c++
+for (const unsigned & n1) {
+    unsigned n2 = n - n1;
+    if (vecteur[n2] == vecteur[n + 1]) {
+        vecteurStockage.push_back({n2, n1});
+    }
+}
+```
+
 _Work in Progress ..._ ⛏️
