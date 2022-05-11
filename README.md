@@ -116,5 +116,3 @@ for (const unsigned & n1) {
     }
 }
 ```
-
-_Work in Progress ..._ ⛏️
