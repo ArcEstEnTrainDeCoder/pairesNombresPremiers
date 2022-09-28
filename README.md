@@ -50,7 +50,7 @@ qu'il n'y a une seule possibilité où 2 est nécessaire ( *n = 4, n1 = 2, n2 = 
 for (size_t i = 3; i < sqrt(n): i += 2) { for (size_t j = i; j < sqrt(n); j += i) { ... } }
 ```
 
-On ajoute également une dernière optimisation concernant la boucle en elle-même, on applique la fonction carré de chaque côté de l'égalité ( *j'avoue avoir du mal à comprendre, mais mon programme va bien plus vite sans la racine carré* ). On obtient finalement :
+On ajoute également une dernière optimisation concernant la boucle en elle-même, on applique la fonction carré de chaque côté de l'égalité car l'appel de la fonction ```sqrt( ... )``` nous fait perdre de précieuses secondes. On obtient finalement :
 
 ```c++
 for (size_t i = 3; i*i < n: i += 2) { for (size_t j = i*i; j < n; j += i) { ... } }
